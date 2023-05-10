@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sustainability Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+    </style>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['gauge']});
+    </script>
+</head>
+<body>
+    <h1>Sustainability Calculator</h1>
+    <p>Enter your investments here (e.g., Ticker Symbol or Company Name):</p>
+    <input type="text" id="investmentInput" placeholder="e.g., Apple, Microsoft">
+    <button onclick="calculateSustainability()">Calculate Sustainability</button>
+    
+    <div id="gaugeChart" style="width: 400px; height: 200px;"></div>
+
+    <script>
+        function drawGaugeChart(score) {
+            const data = google.visualization.arrayToDataTable([
+                ['Label', 'Value'],
+                ['Sustainability', score]
+            ]);
+
+            const options = {
+                width: 400, height: 200,
+                redFrom: 0, redTo: 33,
+                yellowFrom: 33, yellowTo: 66,
+                greenFrom: 66, greenTo: 100,
+                minorTicks: 5
+            };
+
+            const chart = new google.visualization.Gauge(document.getElementById('gaugeChart'));
+            chart.draw(data, options);
+        }
+
+        function calculateSustainability() {
+            const investment = document.getElementById('investmentInput').value;
+            if (!investment) {
+                alert('Please enter your investments.');
+                return;
+            }
+
+            // Placeholder for actual calculation
+            const sustainabilityScore = Math.floor(Math.random() * 101); // Dummy score: random number between 0 and 100
+
+            drawGaugeChart(sustainabilityScore);
+        }
+    </script>
+</body>
+</html>
